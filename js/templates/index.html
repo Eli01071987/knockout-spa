@@ -1,0 +1,5 @@
+<div data-bind="template:{ name: 'user-template', foreach: users }"></div>
+
+<script type="text/template" id="user-template">
+    <div>User&nbsp;<a href="javascript:void(0);" data-bind="text: id, click: $parent.handleClick"></a></div>
+</script>
