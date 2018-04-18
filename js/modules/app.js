@@ -3,12 +3,12 @@ define(["knockout", "router"],
         return function (params) {
             var app = this;
 
-            this.mainContent = ko.observable(null);
+            app.mainContent = ko.observable(null);
 
-            new router("userList", function(userList) {
-                this.setVar("app", app);
+            var router = new router("userList");
 
-                app.mainContent(userList);
-            });
+            router.routerLoaded.done(function(userList){
+                 app.mainContent(userList);
+            })
         };
     });
