@@ -1,14 +1,15 @@
-define(["knockout", "router"],
-    function (ko, router) {
-        return function (params) {
+define(["knockout"],
+    function (ko) {
+        return function () {
             var app = this;
+
+            var router = require("router");
 
             app.mainContent = ko.observable(null);
 
-            var router = new router("userList");
-
-            router.routerLoaded.done(function(userList){
-                 app.mainContent(userList);
-            })
+            new router("userList", { app: app }).routerLoaded
+                .done(function(userList){
+                    app.mainContent(userList);
+                });
         };
     });

@@ -1,6 +1,7 @@
 define(["knockout", "text"], function(ko) {
-	return function(rooter) {
+	return function(params) {
         var self = this;
+        var router = require("router");
 
         var Task = function(userId, id, title, completed) {
             var self = this;
@@ -76,22 +77,29 @@ define(["knockout", "text"], function(ko) {
         }
 
         self.handleResponse = function(response) {
-            var userId = rooter.data().userId;
+            var userId = params.userId;
             
             var doneTasks = response.filter(function(item) {
-                return item.completed && item.userId === rooter.userId;
+                return item.completed && item.userId === userId;
             }).map(function(item) {
                 return new Task(item.userId, item.id, item.title, item.completed);
             });
 
             var activeTasks = response.filter(function(item) {
-                return !item.completed && item.userId === rooter.userId;
+                return !item.completed && item.userId === userId;
             }).map(function(item) {
                 return new Task(item.userId, item.id, item.title, item.completed);
             });
 
             self.toDoList.init(activeTasks);
             self.completeList.init(doneTasks);
+        }
+
+        self.back = function() {
+            new router("userList", { app: params.app }).routerLoaded
+                .done(function(userList) {
+                    params.app.mainContent(userList);
+                });
         }
 
         self.loadData();

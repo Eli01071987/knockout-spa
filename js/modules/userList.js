@@ -1,6 +1,8 @@
-define(["jquery", "knockout", "rooter"], function($, ko, rooter) {
-	return function() {
+define(["jquery", "knockout"], function($, ko) {
+	return function(params) {
 		var self = this;
+
+        var router = require("router");
 
 		self.users = ko.observableArray([]);
 
@@ -29,12 +31,10 @@ define(["jquery", "knockout", "rooter"], function($, ko, rooter) {
         }
 
         self.handleClick = function(item) {
-            new rooter("user", function(user) {
-                this.setVar("userId", item.id);
-                this.setVar("app", self.app);
-
-                self.app.mainContent(user);
-            });
+            new router("user", { userId: item.id, app: params.app }).routerLoaded
+                .done(function(user) {
+                    params.app.mainContent(user);
+                });
         }
 
         self.loadData();

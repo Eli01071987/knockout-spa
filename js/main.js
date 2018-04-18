@@ -1,9 +1,10 @@
 require.config({
+    waitSeconds : 0,
     paths: {
-        "jquery": "/js/vendor/jquery-2.2.4.min",
-        "knockout": "/js/vendor/knockout-3.4.2",
-        "text": "/js/vendor/text",
-        "router": "/js/router"
+        "jquery": "vendor/jquery-2.2.4.min",
+        "knockout": "vendor/knockout-3.4.2",
+        "text": "vendor/text",
+        "router": "router"
     }
 });
 
