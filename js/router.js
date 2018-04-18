@@ -4,7 +4,7 @@ define(["knockout", "text"], function(ko) {
 
 		self.callback = callback;
 		self.data = ko.observable({});
-		self.html = ko.observable(null);
+		self._html = ko.observable(null);
 
         self.setVar = function(i, v) {
 			var data = self.data();
@@ -16,7 +16,7 @@ define(["knockout", "text"], function(ko) {
 		require(["/js/modules/" + file + ".js", "text!/js/templates/" + file + ".html"],
             function(Module, html) {
 			    self.data(typeof Module === "function" ? new Module(self) : Module);
-			    self.html(html);
+			    self._html(html);
 
 			    if (self.callback && typeof self.callback === "function") {
 				    self.callback(self);

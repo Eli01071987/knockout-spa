@@ -6,8 +6,8 @@ require.config({
     }
 });
 
-require(["knockout", "rooter", "templateEngine"], function(ko, rooter) {
-	new rooter("index", function(root) {
-		ko.applyBindings(root);
+require(["knockout", "router", "templateEngine"], function(ko, router) {
+	new router("app", function(app) {
+		ko.applyBindings(app);
 	});
 });

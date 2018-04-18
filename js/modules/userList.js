@@ -29,10 +29,11 @@ define(["jquery", "knockout", "rooter"], function($, ko, rooter) {
         }
 
         self.handleClick = function(item) {
-            new rooter("user", function(root) {
-                root.setVar("userId", item.id);
-                self.html(root.html());
-                self.data(root.data());
+            new rooter("user", function(user) {
+                this.setVar("userId", item.id);
+                this.setVar("app", self.app);
+
+                self.app.mainContent(user);
             });
         }
 
