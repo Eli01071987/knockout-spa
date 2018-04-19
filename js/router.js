@@ -3,16 +3,12 @@ define(["jquery", "knockout", "loader"], function($, ko, loader) {
 		var self = this;
 
 		self.data = ko.observable({});
-		self._html = ko.observable(null);
 
 		self.routerLoadedDf = $.Deferred();
 		self.routerLoaded = self.routerLoadedDf.promise();
 
 		self.applyModels = function(Module, html) {
-			self.data(typeof Module === "function" ? new Module(params) : Module);
-			self._html(html);
-
-			var model = self.data();
+			var model = typeof Module === "function" ? new Module(params) : Module;
 			model._html = html;
 
 			self.data(model);

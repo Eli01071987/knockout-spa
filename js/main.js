@@ -3,8 +3,7 @@ require.config({
     paths: {
         "jquery": "vendor/jquery-2.2.4.min",
         "knockout": "vendor/knockout-3.4.2",
-        "text": "vendor/text",
-        "router": "router"
+        "text": "vendor/text"
     }
 });
 

@@ -43,7 +43,7 @@ define(["knockout", "text"], function(ko) {
                 return this.taskList;
             }
         }
-        
+
         self.toDoList = new TaskList([]);
         self.completeList = new TaskList([]);
 
